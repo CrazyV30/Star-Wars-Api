@@ -1,0 +1,231 @@
+﻿using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Runtime.Intrinsics.Arm;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WinFormsApp_SWAPI
+{
+    internal class UIHelper
+    {
+        private readonly NetworkHelper networkHelper = new NetworkHelper();
+        public async Task ShowImage(ImageLink image, PictureBox pictureBox1)
+        {
+            string path = Path.Combine("Images", image.Name + ".jpg");
+            if (File.Exists(path) && image.LinkImage == string.Empty)
+            {
+                try
+                {
+                    pictureBox1.Image?.Dispose();
+
+                    var vipsImage = NetVips.Image.NewFromFile(path);
+                    byte[] jpgBuffer = vipsImage.WriteToBuffer(".jpg");
+                    using var ms = new MemoryStream(jpgBuffer);
+                    pictureBox1.Image = System.Drawing.Image.FromStream(ms);
+                    return;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error loading from local folder: " + ex.Message);
+                    pictureBox1.Image?.Dispose();
+                    pictureBox1.Image = System.Drawing.Image.FromFile("ImageForms/system.png");
+                }
+            }
+            else if (image.LinkImage == string.Empty)
+            {
+                pictureBox1.Image?.Dispose();
+                pictureBox1.Image = System.Drawing.Image.FromFile("ImageForms/system.png");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    using var client = new HttpClient();
+                    client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0");
+                    byte[] bytes = await client.GetByteArrayAsync(image.LinkImage);
+                    using var vipsImage = NetVips.Image.NewFromBuffer(bytes);
+                    byte[] pngBuffer = vipsImage.WriteToBuffer(".png");
+                    using var ms = new MemoryStream(pngBuffer);
+                    pictureBox1.Image?.Dispose();
+                    pictureBox1.Image = System.Drawing.Image.FromStream(ms);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error decoding: " + ex.Message);
+                    pictureBox1.Image?.Dispose();
+                    pictureBox1.Image = System.Drawing.Image.FromFile("ImageForms/box.png");
+                }
+            }
+        }
+        public async Task<List<T>> LoadListData<T>(List<string> urls)
+        {
+            List<Task<RequestResponse>> result = urls.Select(item => networkHelper.GetFromCache(item)).ToList();
+            RequestResponse[] requestResponses1 = await Task.WhenAll(result);
+            List<string> peoplesStrings = requestResponses1.Where(r => r.Status == RequestStatus.Ok).Select(r => r.data).ToList();
+            List<T> DeserializedPeople = peoplesStrings.Select(item => JsonHelper.Deserialize<T>(item)).ToList();
+            return DeserializedPeople;
+        }
+        public async Task<List<T>> LoadData<T>(string url) {
+            RequestResponse response = await networkHelper.GetFromCache(url);
+            List<T> data = new List<T>();
+            if (response.Status == RequestStatus.Ok)
+            {
+                data = JsonHelper.Deserialize<List<T>>(response.data);
+            }
+            return data;
+        }
+        public async Task<List<ImageLink>> LoadImageLink(List<ImageLink> additionalLinks)
+        {
+            RequestResponse response = await networkHelper.GetFromCache("https://akabab.github.io/starwars-api/api/all.json");
+            if (response.Status == RequestStatus.Ok)
+                return JsonHelper.Deserialize<List<ImageLink>>(response.data);
+            else return new List<ImageLink>();
+        }
+        public void ShowListData<T>(ListBox listBox, List<T> items)
+        {
+            listBox.Items.Clear();
+            foreach (T item in items) listBox.Items.Add(item!);
+        }
+        private async Task DownloadImageAsync(string url, string folder, string fileName)
+        {
+            try
+            {
+                // Створюємо папку, якщо її немає
+                if (!Directory.Exists(folder))
+                {
+                    Directory.CreateDirectory(folder);
+                    Debug.WriteLine($"Folder is created: {folder}");
+                }
+                // Повний шлях до файлу
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, folder, fileName + ".jpg");
+
+                // Завантажуємо зображення
+                using HttpClient client = new HttpClient();
+                byte[] imageBytes = await client.GetByteArrayAsync(url);
+                await File.WriteAllBytesAsync(filePath, imageBytes);
+                Debug.WriteLine($"Image loaded successfuly: {filePath}");
+            }
+            catch (HttpRequestException ex) { Debug.WriteLine($"Error with loading: {ex.Message}"); }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error with loading: {ex.Message}");
+            }
+        }
+        public async Task DownloadImagesAsync(List<ImageLink> imageLinks, string folder)
+        {
+            List<Task> downloadTasks = new List<Task>();
+            foreach (var imageLink in imageLinks)
+            {
+                string fileName = imageLink.Name;
+                downloadTasks.Add(DownloadImageAsync(imageLink.LinkImage, folder, fileName));
+            }
+            await Task.WhenAll(downloadTasks);
+        }
+        public void GeneratePdf(People character)
+        {
+            string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", character.Name + ".jpg");
+            byte[] imageBytes = [];
+            string selectedFolder = string.Empty;
+            if (File.Exists(imagePath))
+            {
+                try
+                {
+                    var vipsImage = NetVips.Image.NewFromFile(imagePath);
+                    if (vipsImage.Width > 500 || vipsImage.Height > 500)
+                    {
+                        double scale = Math.Min(500.0 / vipsImage.Width, 500.0 / vipsImage.Height);
+                        vipsImage = vipsImage.Resize(scale);
+                    }
+                    imageBytes = vipsImage.WriteToBuffer(".jpg[Q=85]");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error with image: {ex.Message}");
+                }
+            }            
+            using (FolderBrowserDialog dialog = new FolderBrowserDialog())
+            {
+                dialog.Description = "Enter a folder for saving";
+                dialog.ShowNewFolderButton = true;
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    selectedFolder = dialog.SelectedPath;
+                }
+            }
+            Document.Create(container =>
+            {
+                container.Page(page =>
+                {
+                    page.Size(PageSizes.A5);
+                    page.Margin(1, Unit.Centimetre);
+                    page.PageColor(Colors.White);
+                    page.DefaultTextStyle(x => x.FontSize(12));
+
+                    page.Header().Text($"Information about {character.Name}")
+                        .SemiBold().FontSize(20).FontColor(Colors.Blue.Medium);
+
+                    page.Content().PaddingVertical(10).Column(async column =>
+                    {
+                        column.Spacing(5);
+
+                        column.Item().Text(await character.Info());
+
+                        column.Spacing(5);
+
+                        if (imageBytes != null)
+                            column.Item().PaddingTop(15).AlignCenter().MaxWidth(200).MaxHeight(200).Image(imageBytes).FitArea().UseOriginalImage();
+                        else
+                            column.Item().PaddingTop(15).Text("Image is not enabled").Italic().FontColor(Colors.Grey.Medium);
+
+                        column.Item().PaddingTop(10).Element(ComposeSignature);
+                    });
+                    page.Footer().AlignCenter().Text(x =>
+                {
+                    x.Span("Star Wars 2026").Italic();
+                });
+                });
+            })            
+            .GeneratePdf($"{selectedFolder}\\Info_{character.Name}.pdf"); // Зберігаємо файл
+            MessageBox.Show($"Certificate for {character.Name} is ready!");
+        }
+        internal async Task<string> GetHomeWorld(string homeworld)
+        {
+            RequestResponse response = await networkHelper.GetFromCache(homeworld);
+            Planet Homeworld = JsonHelper.Deserialize<Planet>(response.data);
+            return Homeworld.Name;
+        }
+        internal async Task<List<string>> GetListData<T>(List<string> url) where T : INameable
+        {
+            List<string> itemNames = new List<string>();
+            foreach (string starshipUrl in url)
+            {
+                RequestResponse itemResponse = await networkHelper.GetFromCache(starshipUrl);
+                T item = JsonHelper.Deserialize<T>(itemResponse.data);
+                itemNames.Add(item.Name);
+            }
+            return itemNames;
+        }
+        private void ComposeSignature(IContainer container)
+        {
+            container.BorderTop(1).PaddingTop(5).Row(row =>
+            {
+                row.RelativeItem().Text("SWAPI");
+                row.RelativeItem().AlignRight().Text("Informer: _________________");
+            });
+        }
+
+        public bool LoadFromConfigIfWantToCache(string configFilePath) => File.Exists(configFilePath) && File.ReadAllText(configFilePath).Trim().ToLower() == "true" ? true : false;
+        public void SaveToConfig(string configFilePath, bool value) => File.WriteAllText(configFilePath, value.ToString());
+
+    }
+}

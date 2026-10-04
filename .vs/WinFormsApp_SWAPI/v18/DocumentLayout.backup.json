@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|d:\\it-office\\projects\\codingnp\\winformsapp_swapi\\winformsapp_swapi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|solutionrelative:winformsapp_swapi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|d:\\it-office\\projects\\codingnp\\winformsapp_swapi\\winformsapp_swapi\\uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|solutionrelative:winformsapp_swapi\\uihelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\winformsapp_swapi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|solutionrelative:winformsapp_swapi\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\winformsapp_swapi\\slideshowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{4BFCBE66-CF98-4FB3-975E-FF4925956266}|WinFormsApp_SWAPI\\WinFormsApp_SWAPI.csproj|solutionrelative:winformsapp_swapi\\slideshowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UIHelper.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\UIHelper.cs",
+              "RelativeDocumentMoniker": "WinFormsApp_SWAPI\\UIHelper.cs",
+              "ToolTip": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\UIHelper.cs",
+              "RelativeToolTip": "WinFormsApp_SWAPI\\UIHelper.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAtwF0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T12:26:01.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\Form1.cs",
+              "RelativeDocumentMoniker": "WinFormsApp_SWAPI\\Form1.cs",
+              "ToolTip": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\Form1.cs",
+              "RelativeToolTip": "WinFormsApp_SWAPI\\Form1.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAcwI8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-02T12:25:25.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SlideShowForm.cs [Design]",
+              "DocumentMoniker": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\SlideShowForm.cs",
+              "RelativeDocumentMoniker": "WinFormsApp_SWAPI\\SlideShowForm.cs",
+              "ToolTip": "D:\\IT office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\SlideShowForm.cs [Design]",
+              "RelativeToolTip": "..\\..\\..\\..\\IT office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\SlideShowForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T15:39:01.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\Form1.cs",
+              "RelativeDocumentMoniker": "WinFormsApp_SWAPI\\Form1.cs",
+              "ToolTip": "D:\\IT-office\\projects\\CodingNP\\WinFormsApp_SWAPI\\WinFormsApp_SWAPI\\Form1.cs [Design]",
+              "RelativeToolTip": "WinFormsApp_SWAPI\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-06T09:52:22.054Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

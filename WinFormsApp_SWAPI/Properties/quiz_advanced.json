@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "question": "What is the name of Han Solo's ship?",
+    "correctAnswer": "Millennium Falcon"
+  },
+  {
+    "id": 2,
+    "question": "Who is Luke Skywalker's father?",
+    "correctAnswer": "Darth Vader"
+  },
+  {
+    "id": 3,
+    "question": "What planet is the homeworld of the Wookiees?",
+    "correctAnswer": "Kashyyyk"
+  },
+  {
+    "id": 4,
+    "question": "What is the name of Boba Fett's ship?",
+    "correctAnswer": "Slave I"
+  },
+  {
+    "id": 5,
+    "question": "Who trained Luke Skywalker on Dagobah?",
+    "correctAnswer": "Yoda"
+  },
+  {
+    "id": 6,
+    "question": "What is the name of the planet where the first Death Star was destroyed?",
+    "correctAnswer": "Yavin 4"
+  },
+  {
+    "id": 7,
+    "question": "What is the weapon used by Jedi Knights?",
+    "correctAnswer": "Lightsaber"
+  },
+  {
+    "id": 8,
+    "question": "Who said: \"I have a bad feeling about this\"?",
+    "correctAnswer": "Multiple characters throughout the saga"
+  },
+  {
+    "id": 9,
+    "question": "What species is Admiral Ackbar?",
+    "correctAnswer": "Mon Calamari"
+  },
+  {
+    "id": 10,
+    "question": "What is the home planet of the Ewoks?",
+    "correctAnswer": "Endor"
+  },
+  {
+    "id": 11,
+    "question": "Who built C-3PO?",
+    "correctAnswer": "Anakin Skywalker"
+  },
+  {
+    "id": 12,
+    "question": "What is the name of the planet covered entirely by a city?",
+    "correctAnswer": "Coruscant"
+  },
+  {
+    "id": 13,
+    "question": "What is the Sith name of Sheev Palpatine?",
+    "correctAnswer": "Darth Sidious"
+  },
+  {
+    "id": 14,
+    "question": "What creature did Han Solo cut open to keep Luke warm on Hoth?",
+    "correctAnswer": "Tauntaun"
+  },
+  {
+    "id": 15,
+    "question": "What color is Mace Windu's lightsaber?",
+    "correctAnswer": "Purple"
+  },
+  {
+    "id": 16,
+    "question": "Who was the first clone trooper template?",
+    "correctAnswer": "Jango Fett"
+  },
+  {
+    "id": 17,
+    "question": "What is the name of the planet where the clone army was created?",
+    "correctAnswer": "Kamino"
+  },
+  {
+    "id": 18,
+    "question": "What is the name of the Mandalorian's ship?",
+    "correctAnswer": "Razor Crest"
+  },
+  {
+    "id": 19,
+    "question": "Who killed Jabba the Hutt?",
+    "correctAnswer": "Princess Leia"
+  },
+  {
+    "id": 20,
+    "question": "What is the name of the Tatooine spaceport where Mos Eisley is located?",
+    "correctAnswer": "Tatooine has multiple spaceports, Mos Eisley is one of them"
+  },
+  {
+    "id": 21,
+    "question": "What does \"TIE\" stand for in TIE Fighter?",
+    "correctAnswer": "Twin Ion Engine"
+  },
+  {
+    "id": 22,
+    "question": "What is the name of the Wookiee co-pilot of the Millennium Falcon?",
+    "correctAnswer": "Chewbacca"
+  },
+  {
+    "id": 23,
+    "question": "What planet is the homeworld of the Twi'lek species?",
+    "correctAnswer": "Ryloth"
+  },
+  {
+    "id": 24,
+    "question": "Who was the apprentice of Darth Sidious before Darth Vader?",
+    "correctAnswer": "Darth Maul"
+  },
+  {
+    "id": 25,
+    "question": "What is the name of the crystal that powers a lightsaber?",
+    "correctAnswer": "Kyber crystal"
+  },
+  {
+    "id": 26,
+    "question": "What species is Yoda?",
+    "correctAnswer": "Unknown"
+  },
+  {
+    "id": 27,
+    "question": "What is the name of the bounty hunter who captured Han Solo?",
+    "correctAnswer": "Boba Fett"
+  },
+  {
+    "id": 28,
+    "question": "What planet is destroyed by the first Death Star?",
+    "correctAnswer": "Alderaan"
+  },
+  {
+    "id": 29,
+    "question": "What is the name of the droid language spoken by R2-D2?",
+    "correctAnswer": "Binary"
+  },
+  {
+    "id": 30,
+    "question": "Who was the Jedi Master who discovered the secret to immortality?",
+    "correctAnswer": "Qui-Gon Jinn"
+  }
+]
